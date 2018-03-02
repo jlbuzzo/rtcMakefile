@@ -1,0 +1,19 @@
+#Create directories with the same name of sorted bam files
+mkdir ghmake_8/g1_8x.bam.sorted.bam
+mkdir ghmake_40/g1_40x.bam.sorted.bam
+
+mkdir ghmake_8/g2_8x.bam.sorted.bam
+mkdir ghmake_40/g2_40x.bam.sorted.bam
+
+mkdir ghmake_8/g3_8x.bam.sorted.bam
+mkdir ghmake_40/g3_40x.bam.sorted.bam
+
+mkdir ghmake_8/g4_8x.bam.sorted.bam
+mkdir ghmake_40/g4_40x.bam.sorted.bam
+
+mkdir ghmake_8/g5_8x.bam.sorted.bam
+mkdir ghmake_40/g5_40x.bam.sorted.bam
+
+#Manually create symbolic links from *.bam.sorted.bam inside each target directory (ghmake_*)
+#Ex: ln -s genomes/g1/g1_8x.bam.sorted.bam ghmake_8/g1_8x.bam.sorted.bam
+

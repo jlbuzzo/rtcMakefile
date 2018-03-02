@@ -1,0 +1,4 @@
+#make mergeCall REFERENCE_GENOME_FASTA=/home/genomes/Homo_sapiens/hg38/toBWA/hg38.fa OUTPUT_DIR=../ghmake_8
+
+make mergeCall REFERENCE_GENOME_FASTA=/home/genomes/Homo_sapiens/hg38/toBWA/hg38.fa OUTPUT_DIR=../ghmake_40
+

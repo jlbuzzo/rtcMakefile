@@ -1,0 +1,12 @@
+make processSample INPUT_FILE=/home/projects/local_collab/gh_RTC_simulation/genomes/g1/g1_8x.bam.sorted.bam OUTPUT_DIR=./ghmake_8 SORTED=TRUE
+#make processSample INPUT_FILE=/home/projects/local_collab/gh_RTC_simulation/genomes/g2/g2_8x.bam.sorted.bam OUTPUT_DIR=./ghmake_8 SORTED=TRUE
+#make processSample INPUT_FILE=/home/projects/local_collab/gh_RTC_simulation/genomes/g3/g3_8x.bam.sorted.bam OUTPUT_DIR=./ghmake_8 SORTED=TRUE
+#make processSample INPUT_FILE=/home/projects/local_collab/gh_RTC_simulation/genomes/g4/g4_8x.bam.sorted.bam OUTPUT_DIR=./ghmake_8 SORTED=TRUE
+#make processSample INPUT_FILE=/home/projects/local_collab/gh_RTC_simulation/genomes/g5/g5_8x.bam.sorted.bam OUTPUT_DIR=./ghmake_8 SORTED=TRUE
+
+
+#make processSample INPUT_FILE=/home/projects/local_collab/gh_RTC_simulation/genomes/g1/g1_40x.bam.sorted.bam OUTPUT_DIR=../ghmake_40 SORTED=TRUE
+#make processSample INPUT_FILE=/home/projects/local_collab/gh_RTC_simulation/genomes/g2/g2_40x.bam.sorted.bam OUTPUT_DIR=../ghmake_40 SORTED=TRUE
+#make processSample INPUT_FILE=/home/projects/local_collab/gh_RTC_simulation/genomes/g3/g3_40x.bam.sorted.bam OUTPUT_DIR=../ghmake_40 SORTED=TRUE
+#make processSample INPUT_FILE=/home/projects/local_collab/gh_RTC_simulation/genomes/g4/g4_40x.bam.sorted.bam OUTPUT_DIR=../ghmake_40 SORTED=TRUE
+#make processSample INPUT_FILE=/home/projects/local_collab/gh_RTC_simulation/genomes/g5/g5_40x.bam.sorted.bam OUTPUT_DIR=../ghmake_40 SORTED=TRUE

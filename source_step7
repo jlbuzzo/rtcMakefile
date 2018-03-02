@@ -1,0 +1,14 @@
+samtools index -b ghmake_8/g1_8x.bam.sorted.bam/g1_8x.bam.sorted.bam ghmake_8/g1_8x.bam.sorted.bam/g1_8x.bam.sorted.bam.bai &
+samtools index -b ghmake_40/g1_40x.bam.sorted.bam/g1_40x.bam.sorted.bam ghmake_40/g1_40x.bam.sorted.bam/g1_40x.bam.sorted.bam.bai
+
+samtools index -b ghmake_8/g2_8x.bam.sorted.bam/g2_8x.bam.sorted.bam ghmake_8/g2_8x.bam.sorted.bam/g2_8x.bam.sorted.bam.bai &
+samtools index -b ghmake_40/g2_40x.bam.sorted.bam/g2_40x.bam.sorted.bam ghmake_40/g2_40x.bam.sorted.bam/g2_40x.bam.sorted.bam.bai
+
+samtools index -b ghmake_8/g3_8x.bam.sorted.bam/g3_8x.bam.sorted.bam ghmake_8/g3_8x.bam.sorted.bam/g3_8x.bam.sorted.bam.bai &
+samtools index -b ghmake_40/g3_40x.bam.sorted.bam/g3_40x.bam.sorted.bam ghmake_40/g3_40x.bam.sorted.bam/g3_40x.bam.sorted.bam.bai
+
+samtools index -b ghmake_8/g4_8x.bam.sorted.bam/g4_8x.bam.sorted.bam ghmake_8/g4_8x.bam.sorted.bam/g4_8x.bam.sorted.bam.bai &
+samtools index -b ghmake_40/g4_40x.bam.sorted.bam/g4_40x.bam.sorted.bam ghmake_40/g4_40x.bam.sorted.bam/g4_40x.bam.sorted.bam.bai
+
+samtools index -b ghmake_8/g5_8x.bam.sorted.bam/g5_8x.bam.sorted.bam ghmake_8/g5_8x.bam.sorted.bam/g5_8x.bam.sorted.bam.bai &
+samtools index -b ghmake_40/g5_40x.bam.sorted.bam/g5_40x.bam.sorted.bam ghmake_40/g5_40x.bam.sorted.bam/g5_40x.bam.sorted.bam.bai
