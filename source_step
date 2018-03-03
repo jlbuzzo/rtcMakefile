@@ -1,0 +1,20 @@
+#!/bin/bash
+
+
+# LET'S DO THE MAGIC!
+clear
+
+# Part 1: processSample
+touch timestamp1
+make processSample INPUT_FILE=/home/projects/local_collab/gh_RTC_simulation/genomes/g1/g1_8x.bam.sorted.bam OUTPUT_DIR=./ghmake_8 SORTED=TRUE &
+make processSample INPUT_FILE=/home/projects/local_collab/gh_RTC_simulation/genomes/g2/g2_8x.bam.sorted.bam OUTPUT_DIR=./ghmake_8 SORTED=TRUE &
+make processSample INPUT_FILE=/home/projects/local_collab/gh_RTC_simulation/genomes/g3/g3_8x.bam.sorted.bam OUTPUT_DIR=./ghmake_8 SORTED=TRUE &
+make processSample INPUT_FILE=/home/projects/local_collab/gh_RTC_simulation/genomes/g4/g4_8x.bam.sorted.bam OUTPUT_DIR=./ghmake_8 SORTED=TRUE &
+make processSample INPUT_FILE=/home/projects/local_collab/gh_RTC_simulation/genomes/g5/g5_8x.bam.sorted.bam OUTPUT_DIR=./ghmake_8 SORTED=TRUE &
+
+# Wait for part 1 to be complete.
+wait
+
+# Part 2: mergeCall
+make mergeCall REFERENCE_GENOME_FASTA=/home/genomes/Homo_sapiens/hg38/toBWA/hg38.fa OUTPUT_DIR=./ghmake_8 -j
+touch timestamp2

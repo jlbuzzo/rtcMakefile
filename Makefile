@@ -190,6 +190,8 @@ $(OUTPUT_DIR)/reference/genes.formated: $(OUTPUT_DIR)/reference/genes.bed | $(OU
 #################
 
 $(OUTPUT_DIR)/result/putativeins: $(OUTPUT_DIR)/reference/genes.formated | $(OUTPUT_DIR)/result
+	$(info )
+	$(info Make putativeins.)
 	#Foreach gene
 	@echo "$(timestamp) $(PIPELINE_NAME): Clustering abnormals in $(OUTPUT_DIR)/ into $(OUTPUT_DIR)/result/putativeins\n" #>> $(LOG_MERGE)
 	RAND=$$(echo $$RANDOM);
@@ -220,6 +222,8 @@ $(OUTPUT_DIR)/result/putativeins: $(OUTPUT_DIR)/reference/genes.formated | $(OUT
 #
 #################
 $(OUTPUT_DIR)/result/putativeins.min: $(OUTPUT_DIR)/result/putativeins
+	$(info )
+	$(info Make putativeins.min.)
 	@echo "$(timestamp) $(PIPELINE_NAME): Removing small ranged clusters and reformatting putativeins\n" #>> $(LOG_MERGE)
 	cat $(OUTPUT_DIR)/result/putativeins  | awk '{if ($$6 == "chr=") {print $$1,$$2,$$3,$$4,$$5,$$1,$$7,$$8,$$9,$$10,$$11,$$12} else {print $$_}}' > $(OUTPUT_DIR)/result/temp 
 	cat $(OUTPUT_DIR)/result/temp | sed 's/[()]//g' | awk '{if ( $$4 >= 30 && $$8 >= 30 ) {print}}' > $(OUTPUT_DIR)/result/putativeins.min
@@ -233,6 +237,8 @@ $(OUTPUT_DIR)/result/putativeins.min: $(OUTPUT_DIR)/result/putativeins
 #
 #################
 $(OUTPUT_DIR)/result/putativeins.min.norep: $(OUTPUT_DIR)/result/putativeins.min | $(TEMP_PROCESS_DIR)
+	$(info )
+	$(info Make putativeins.min.norep.)
 	@echo "$(timestamp) $(PIPELINE_NAME): Removing clusters overlapping Repetitive Elements annotated by Repeat Masker\n" #>> $(LOG_MERGE)
 	perl library/src/remove_rep.pl -p $(TEMP_PROCESS_DIR) -f $(REP_ANNOTATION) -f2 $(OUTPUT_DIR)/result/putativeins.min
 	perl library/src/remove_rep.pl -p $(TEMP_PROCESS_DIR) -f $(REP_ANNOTATION_manual) -f2 $(OUTPUT_DIR)/result/putativeins.min.norep
@@ -246,6 +252,8 @@ $(OUTPUT_DIR)/result/putativeins.min.norep: $(OUTPUT_DIR)/result/putativeins.min
 #
 #################
 $(OUTPUT_DIR)/result/putativeins.min.norep.exonic: $(OUTPUT_DIR)/result/putativeins.min.norep $(OUTPUT_DIR)/reference/exons.bed | $(TEMP_PROCESS_DIR)
+	$(info )
+	$(info Make putativeins.min.norep.exonic.)
 	@echo "$(timestamp) $(PIPELINE_NAME): Removing clusters extremities not everlapping exons\n" #>> $(LOG_MERGE)
 	RAND=$$$$ && \
 	for putativeins in $$(cat $(OUTPUT_DIR)/result/putativeins.min.norep | sed 's/[ ]/#/g' ); do \
@@ -281,6 +289,8 @@ $(OUTPUT_DIR)/result/putativeins.min.norep.exonic: $(OUTPUT_DIR)/result/putative
 ##
 
 $(OUTPUT_DIR)/result/putativeins.min.norep.exonic.dist.notsimilar: $(OUTPUT_DIR)/result/putativeins.min.norep.exonic | $(TEMP_PROCESS_DIR)
+	$(info )
+	$(info Make putativeins.min.norep.exonic.dist.notsimilar.)
 	@echo "$(timestamp) $(PIPELINE_NAME): Removing clusters which Insertion Point is simmilar to Parental Sequence\n" #>> $(LOG_MERGE)
 	RAND=$$$$ && \
 	perl library/src/similarity_filter.pl -p $(TEMP_PROCESS_DIR) -f $(OUTPUT_DIR)/result/putativeins.min.norep.exonic -g $(REFERENCE_GENOME_FASTA) > $(OUTPUT_DIR)/result/putativeins.min.norep.exonic.dist.notsimilar_debug
@@ -299,6 +309,8 @@ $(OUTPUT_DIR)/result/putativeins.min.norep.exonic.dist.notsimilar: $(OUTPUT_DIR)
 		#IP_CHR2=$$(echo $$putativeins | awk -F "[#]" '{ if ($$6 == $$1) {print "="} else {print $$6}}')|sed 's/chr//g'; \
 
 $(OUTPUT_DIR)/result/putativeins.min.norep.exonic.dist.notsimilar.orientation: $(OUTPUT_DIR)/result/putativeins.min.norep.exonic.dist.notsimilar
+	$(info )
+	$(info Make putativeins.min.norep.exonic.dist.notsimilar.orientation.)
 	@echo "$(timestamp) $(PIPELINE_NAME): Recalculating Insertion Point and Support from original BAM files; Checking supporting reads orientation\n" #>> $(LOG_MERGE)
 	rm -Rf $(OUTPUT_DIR)/result/dump/; \
 	rm -Rf $(OUTPUT_DIR)/result/putativeins.min.norep.exonic.dist.notsimilar.orientation; \
@@ -326,8 +338,11 @@ $(OUTPUT_DIR)/result/putativeins.min.norep.exonic.dist.notsimilar.orientation: $
 		sed -i 's/chrchr/chr/g' $(OUTPUT_DIR)/result/dump/$$GENE\_$$PAR_CHR\_$$PAR_START\_$$IP_CHR\_$$IP_START.reads.abnormal.bed; \
 	done 
 	@echo "$(timestamp) $(PIPELINE_NAME): Finished recalculating Insertion Point and Support from original BAM files; Checked supporting reads orientation\n" #>> $(LOG_MERGE)
+
+
 #################
-#no evidence - test
+#
+# no evidence - test
 #
 #################
 
@@ -357,3 +372,6 @@ processSample: $(OUTPUT_DIR)/$(SAMPLE_ID)/$(FINAL_BAM_FILE).abnormal
 	$(info Finished the search for abnormals.)
 
 mergeCall: $(OUTPUT_DIR)/result/putativeins.min.norep.exonic.dist.notsimilar.orientation
+	$(info )
+	$(info Finished merge.)
+
