@@ -1,7 +1,7 @@
 #!/bin/bash
 
 
-OUT=../outputs/save_legacy
+OUT=../outputs/save_legacy_tst
 
 # LET'S DO THE MAGIC!
 clear
@@ -14,9 +14,16 @@ make processSample INPUT_FILE=/home/projects/local_collab/gh_RTC_simulation/geno
 make processSample INPUT_FILE=/home/projects/local_collab/gh_RTC_simulation/genomes/g4/g4_8x.bam.sorted.bam OUTPUT_DIR=$OUT SORTED=TRUE &
 make processSample INPUT_FILE=/home/projects/local_collab/gh_RTC_simulation/genomes/g5/g5_8x.bam.sorted.bam OUTPUT_DIR=$OUT SORTED=TRUE &
 
+# Part 1: processSample
+#make processSample INPUT_FILE=/home/projects2/retrocopies/pipeline/HGDP/mapped_paired_SRR1157044.bam/mapped_paired_SRR1157044.bam.sorted.bam OUTPUT_DIR=$OUT SORTED=TRUE &
+#make processSample INPUT_FILE=/home/projects2/retrocopies/pipeline/HGDP/mapped_paired_SRR1157058.bam/mapped_paired_SRR1157058.bam.sorted.bam OUTPUT_DIR=$OUT SORTED=TRUE &
+#make processSample INPUT_FILE=/home/projects2/retrocopies/pipeline/HGDP/mapped_paired_SRR1157060.bam/mapped_paired_SRR1157060.bam.sorted.bam OUTPUT_DIR=$OUT SORTED=TRUE &
+#make processSample INPUT_FILE=/home/projects2/retrocopies/pipeline/HGDP/mapped_paired_SRR1157061.bam/mapped_paired_SRR1157061.bam.sorted.bam OUTPUT_DIR=$OUT SORTED=TRUE &
+#make processSample INPUT_FILE=/home/projects2/retrocopies/pipeline/HGDP/mapped_paired_SRR1157062.bam/mapped_paired_SRR1157062.bam.sorted.bam OUTPUT_DIR=$OUT SORTED=TRUE &
+
 # Wait for part 1 to be complete.
 wait
 
 # Part 2: mergeCall
-make mergeCall REFERENCE_GENOME_FASTA=/home/genomes/Homo_sapiens/hg38/toBWA/hg38.fa OUTPUT_DIR=$OUT -j
+make mergeCall REFERENCE_GENOME_FASTA=/home/projects2/retrocopies/upipe_RTC/ancillaries/genomes/hg38/hg38.fa OUTPUT_DIR=$OUT -j 10
 touch timestamp2
