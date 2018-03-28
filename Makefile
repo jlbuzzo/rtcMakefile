@@ -138,14 +138,14 @@ $(OUTPUT_DIR)/$(SAMPLE_ID)/$(FINAL_BAM_FILE).abnormal: $(OUTPUT_DIR)/$(SAMPLE_ID
 	mkdir -p $(OUTPUT_DIR)/$(SAMPLE_ID)/genes
 	#For each gene, create a temporary file with abnormal alignments
 	for j in $$(cat $(OUTPUT_DIR)/reference/genes.formated ); do \
-      GENE=$$(echo $$j | awk -F "[*][*]" '{print $$4}'); \
-			CHR=$$(echo $$j | awk -F "[*][*]" '{print $$1}'); \
-			START=$$(echo $$j | awk -F "[*][*]" '{print $$2}'); \
-      END=$$(echo $$j | awk -F "[*][*]" '{print $$3}'); \
+		GENE=$$(echo $$j | awk -F "[*][*]" '{print $$4}'); \
+		CHR=$$(echo $$j | awk -F "[*][*]" '{print $$1}'); \
+		START=$$(echo $$j | awk -F "[*][*]" '{print $$2}'); \
+		END=$$(echo $$j | awk -F "[*][*]" '{print $$3}'); \
 		samtools view $(OUTPUT_DIR)/$(SAMPLE_ID)/$(FINAL_BAM_FILE) $$CHR:$$START-$$END | \
 		awk '{if ( ( $$7 == "=" && ( $$9 > 100000 || $$9 < -100000) ) || ( $$7 != "=" && $$7 != "*" ) ) {print "chr"$$3"\t"$$4"\tchr"$$7"\t"$$8}}' | sed 's/chrchr/chr/g' > $(OUTPUT_DIR)/$(SAMPLE_ID)/genes/$$GENE.abnormal 2>/dev/null; \
-      if [[ ! -s $(OUTPUT_DIR)/$(SAMPLE_ID)/genes/$$GENE.abnormal ]]; then rm $(OUTPUT_DIR)/$(SAMPLE_ID)/genes/$$GENE.abnormal; fi; \
-    done
+		if [[ ! -s $(OUTPUT_DIR)/$(SAMPLE_ID)/genes/$$GENE.abnormal ]]; then rm $(OUTPUT_DIR)/$(SAMPLE_ID)/genes/$$GENE.abnormal; fi; \
+	done
 	find $(OUTPUT_DIR)/$(SAMPLE_ID)/genes/ -type f -name '*.abnormal' -exec wc -l '{}' ';' >> $(OUTPUT_DIR)/$(SAMPLE_ID)/$(FINAL_BAM_FILE).abnormal
 	#wc -l $(OUTPUT_DIR)/$(SAMPLE_ID)/genes/*.abnormal > $(OUTPUT_DIR)/$(SAMPLE_ID)/$(FINAL_BAM_FILE).abnormal
 	@echo "$(timestamp) $(PIPELINE_NAME): Abnormal file create at: $(OUTPUT_DIR)/$(SAMPLE_ID)/$(FINAL_BAM_FILE).abnormal\n" >> $(LOG_FILE)
