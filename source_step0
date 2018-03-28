@@ -25,5 +25,5 @@ make processSample INPUT_FILE=/home/projects/local_collab/gh_RTC_simulation/geno
 wait
 
 # Part 2: mergeCall
-make mergeCall REFERENCE_GENOME_FASTA=/home/projects2/retrocopies/upipe_RTC/ancillaries/genomes/hg38/hg38.fa OUTPUT_DIR=$OUT -j 10
+make mergeCall REFERENCE_GENOME_FASTA=/home/users/jlbuzzo/projects_old/upipe_RTC/ancillaries/genomes/hg38/hg38.fa OUTPUT_DIR=$OUT -j 10
 #touch timestamp2
