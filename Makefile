@@ -1,19 +1,11 @@
-##
-## Main make target
-##
-
-
 $(info ###############################################################################)
-$(info                               UFINDER)
+$(info                         $(PIPELINE_NAME))
 $(info ###############################################################################)
-$(info processSample)
+$(info )
 
-all : processSample
 
-.PHONY: all processSample
-.DEFAULT: all
-.INTERMEDIATE: 
 
+# Include the options file.
 include opt.mk
 
 FILE_NAME:=$(notdir $(INPUT_FILE))
@@ -24,9 +16,14 @@ endif
 LOG_FILE := $(OUTPUT_DIR)/$(SAMPLE_ID).log
 timestamp := `/bin/date "+%Y-%m-%d(%H:%M:%S)"`
 
+
+
 ##
 ## Create results directory
 ##
+
+all: processSample
+
 
 $(OUTPUT_DIR)/$(SAMPLE_ID):
 	$(info )
