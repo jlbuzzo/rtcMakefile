@@ -6,6 +6,7 @@ GENOMES_DIR := $(BASE_DIR)/genomes
 
 REF_ANNOTATION := $(ANNOTATION_DIR)/gencode.v26.annotation.gtf
 REP_ANNOTATION := $(ANNOTATION_DIR)/rep.hg38.converted.bed
+REP_ANNOTATION_manual := $(ANNOTATION_DIR)/rep.hg38.converted.manual.bed
 REFERENCE_GENOME_FASTA := $(GENOMES_DIR)/hg38/hg38.fa
 
 

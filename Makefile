@@ -8,7 +8,7 @@ $(info )
 # Include the options file.
 include opt.mk
 
-FILE_NAME:=$(notdir $(INPUT_FILE))
+FILE_NAME := $(notdir $(INPUT_FILE))
 ifneq ($(SAMPLE_NAME),NULL)
        SAMPLE_ID := $(FILE_NAME)
 endif
@@ -187,6 +187,7 @@ $(OUTPUT_DIR)/reference/genes.formated: $(OUTPUT_DIR)/reference/genes.bed | $(OU
 #
 #################
 
+
 $(OUTPUT_DIR)/result/putativeins: $(OUTPUT_DIR)/reference/genes.formated | $(OUTPUT_DIR)/result
 	$(info )
 	$(info Make putativeins.)
@@ -220,6 +221,7 @@ $(OUTPUT_DIR)/result/putativeins: $(OUTPUT_DIR)/reference/genes.formated | $(OUT
 # Rule to remove clusters with evidence spanning at least 30bp
 #
 #################
+
 $(OUTPUT_DIR)/result/putativeins.min: $(OUTPUT_DIR)/result/putativeins
 	$(info )
 	$(info Make putativeins.min.)
@@ -235,6 +237,7 @@ $(OUTPUT_DIR)/result/putativeins.min: $(OUTPUT_DIR)/result/putativeins
 # Rule to remove clusters overlapping repetitive elements
 #
 #################
+
 $(OUTPUT_DIR)/result/putativeins.min.norep: $(OUTPUT_DIR)/result/putativeins.min | $(TEMP_PROCESS_DIR)
 	$(info )
 	$(info Make putativeins.min.norep.)
@@ -250,6 +253,7 @@ $(OUTPUT_DIR)/result/putativeins.min.norep: $(OUTPUT_DIR)/result/putativeins.min
 # Rule to select exonic (and near exonic) abnormal clusters
 #
 #################
+
 $(OUTPUT_DIR)/result/putativeins.min.norep.exonic: $(OUTPUT_DIR)/result/putativeins.min.norep $(OUTPUT_DIR)/reference/exons.bed | $(TEMP_PROCESS_DIR)
 	$(info )
 	$(info Make putativeins.min.norep.exonic.)
