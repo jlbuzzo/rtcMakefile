@@ -8,35 +8,52 @@
 
 ############################## PREAMBLE #######################################
 
-# Arguments validation.
-if (( ${#@} < 2 )); then
-  	echo -e "Error in $0: Input arguments missing!" >&2
-	exit 1;
-fi
-
-# Verify output directory.
-if [ -d ${!#%/*} ]; then
-	OUTPUT_DIR=${!#}
-else
-  	echo -e "Error in $0: Invalid OUTPUT_DIR path!" >&2
-	exit 1;
-fi
-
-# Number of parallel jobs.
-JOBS=4
-
-# Process counter
-count=0
-
-# Some variables.
+# Main variables.
 CMD=make
 SUB_CMD1=processSample
 SUB_CMD2=mergeCall
 OTHERS="SORTED=TRUE"
 
 
-# Try to read froma file descriptor.
-#echo <<< &0
+# Arguments validation.
+if (( $# < 2 )); then
+	cat >&2 <<- EOF
+	Error in $0: Input arguments missing!
+	
+	Usage:
+		laucher INPUT1 [INPUT2] ... OUTPUT_DIR
+	EOF
+	exit 1;
+fi
+
+# Verify OUTPUT_DIR directory.
+if [[ -w $2 || -w $(dirname $2) ]]; then
+	# Alert user.
+	[[ -w $2 ]] && \
+		echo -e "Folder '$2' will be overwriten!"
+	
+	OUTPUT_DIR=${!#}
+else
+  	echo -e "Error in $0: You have no write permission for directory '$2' !" >&2
+	exit 1;
+fi
+
+# Verify INPUTs.
+count=1
+while [[ "$count" -lt $# ]]; do
+	[[ ! -s "${!count}" ]] && \
+		echo -e "Warning in $0: Nonexistent file or directory '${!count}' !" >&2 && \
+		exit 1;
+	
+	((++count))
+done
+
+
+# Number of parallel jobs.
+JOBS=4
+
+# Reset counter
+count=0
 
 
 
@@ -77,7 +94,7 @@ while [[ $# -gt 1 ]]; do
 			done < $1
 		fi
 	else
-		echo -e "Warning in $0: No such file or directory: '$1'!" >&2
+		echo -e "Warning in $0: No such file or directory '$1'!" >&2
 	fi
 	
 	# Move parameters.
@@ -90,6 +107,3 @@ wait
 
 # Part 2: Serial part
 make mergeCall OUTPUT_DIR=$OUTPUT_DIR -j $JOBS
-
-# Counter.
-../../miscellaneous/counter.sh $OUTPUT_DIR

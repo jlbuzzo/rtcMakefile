@@ -1,7 +1,7 @@
 #!/bin/bash
 
 
-OUT=/home/scratch60/lbuzzo/RTC/outputs/save_legacy_5
+OUT=/home/scratch60/lbuzzo/RTC/outputs/save_5_ponga
 
 make processSample INPUT_FILE=/home/projects/local_collab/gh_RTC_simulation/genomes/g1/g1_8x.bam.sorted.bam OUTPUT_DIR=$OUT SORTED=TRUE &
 make processSample INPUT_FILE=/home/projects/local_collab/gh_RTC_simulation/genomes/g2/g2_8x.bam.sorted.bam OUTPUT_DIR=$OUT SORTED=TRUE &
@@ -12,5 +12,3 @@ make processSample INPUT_FILE=/home/projects/local_collab/gh_RTC_simulation/geno
 wait
 
 make mergeCall OUTPUT_DIR=$OUT -j 4
-
-../../miscellaneous/counter.sh $OUT > $OUT/counts.txt
