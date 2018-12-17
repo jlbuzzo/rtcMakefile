@@ -1,5 +1,94 @@
-timestamp*
-source_step*
+############################## HEADER ##########################################
+# Repository's ignore list.
+################################################################################
+
+
+
+# Ignore repository's general files.
+#.gitignore
+#.dockerignore
+#Dockerfile
+#README.md
+#LICENSE
+#NEWS
+#CONTRIBUTING
+
+
+# Ignore repository's general folders.
+#.git
+#scripts/
+#src/
+#lib/
+#include/
+bin/
+#doc/
+#docker/
+#templates/
+#modules/
+#misc/
+data/
+packs/
+build/
+dist/
+m4/
+t/
+
+
+# Ignore general doc, building, timestamp and log files.
+#*.md
+#*.tex
+#*.ac
+#*.am
+#*.in
+#*.tt
+*.yml
+*.conf
+*.ini
 *.log
-*.txt
+*.[oa]
+*.so
 *.swp
+*~
+*.perldb
+*.tar.gz
+*tmp*
+*timestamp*
+
+
+# Ignore code files. (Don't do that!)
+#*.mk
+#*.c
+#*.h
+#*.pl
+#*.py
+#*.R
+#*.r
+
+
+# Don't ignore general defaults configuration file.
+!defaults.yml
+
+
+# Ignore runtime structural folders.
+*pocket/
+*config/
+*inputs/
+*outputs/
+*assets/
+*reference/
+*annotation/
+*extra/
+*tmp/
+
+*outputs/imgs/
+*outputs/docs/
+*outputs/plots/
+*outputs/models/
+*outputs/results/
+*outputs/templates/
+*outputs/timestamps/
+
+
+# Ignore repository's specific folders.
+library/annotation/
+inputs.txt

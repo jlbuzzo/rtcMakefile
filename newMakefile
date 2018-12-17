@@ -18,13 +18,34 @@ include opt.mk
 # INPUT_FILE must be given from command line.
 FILE_NAME := $(notdir $(INPUT_FILE))
 ifneq ($(SAMPLE_NAME),NULL)
-       SAMPLE_ID := $(FILE_NAME)
+SAMPLE_ID := $(FILE_NAME)
+endif
+
+# Adjust file's name if sorted.
+ifeq ($(SORTED),TRUE)
+FINAL_BAM_FILE := $(FILE_NAME)
+else
+FINAL_BAM_FILE := $(FILE_NAME).sorted.bam
 endif
 
 
 LOG_FILE := $(OUTPUT_DIR)/$(SAMPLE_ID).log
 timestamp := `/bin/date "+%Y-%m-%d(%H:%M:%S)"`
 
+
+############################## DEBUG ###########################################
+
+ifeq ($(DBG),yes)
+
+$(info )
+$(info FILE_NAME:$(FILE_NAME).)
+$(info )
+
+endif
+
+ifeq ($(STP),yes)
+$(error Emergency stop)
+endif
 
 # Default goal.
 all: mergeCall
@@ -207,20 +228,29 @@ $(OUTPUT_DIR)/$(SAMPLE_ID)/$(FINAL_BAM_FILE).bai: $(OUTPUT_DIR)/$(SAMPLE_ID)/$(F
 
 
 ifeq ($(SORTED),TRUE)
-FINAL_BAM_FILE := $(FILE_NAME)
 $(OUTPUT_DIR)/$(SAMPLE_ID)/$(FINAL_BAM_FILE): $(INPUT_FILE) | $(OUTPUT_DIR)/$(SAMPLE_ID)
 	$(info )
 	$(info Make *.bam.)
 	ln -s $(INPUT_FILE) $(OUTPUT_DIR)/$(SAMPLE_ID)/$(FINAL_BAM_FILE) 
 	@echo "$(timestamp) $(PIPELINE_NAME): Created link at $(INPUT_FILE) $(OUTPUT_DIR)/$(SAMPLE_ID)/$(FINAL_BAM_FILE): \n" >> $(LOG_FILE)
 else
-FINAL_BAM_FILE := $(FILE_NAME).sorted.bam
 $(OUTPUT_DIR)/$(SAMPLE_ID)/$(FINAL_BAM_FILE): $(INPUT_FILE) | $(OUTPUT_DIR)/$(SAMPLE_ID)
 	$(info )
 	$(info Make *.bam.)
 	@echo "$(timestamp) $(PIPELINE_NAME): Sorting file: $(INPUT_FILE)\n" >> $(LOG_FILE)
 	samtools sort -O BAM -m 10G $(INPUT_FILE) -o $(OUTPUT_DIR)/$(SAMPLE_ID)/$(FILE_NAME).sorted
 	@echo "$(timestamp) $(PIPELINE_NAME): Sorted file at: $(OUTPUT_DIR)/$(SAMPLE_ID)/$(FINAL_BAM_FILE)\n" >> $(LOG_FILE)
+endif
+
+
+ifeq ($(DBG),yes)
+
+$(info )
+$(info FINAL_BAM_FILE:$(FINAL_BAM_FILE).)
+$(info SAMPLE_ID:$(SAMPLE_ID).)
+$(info TUDO:$(OUTPUT_DIR)/$(SAMPLE_ID)/$(FINAL_BAM_FILE).)
+$(info )
+
 endif
 
 
