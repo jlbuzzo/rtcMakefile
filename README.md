@@ -17,8 +17,12 @@ by mining its BAM files for abnormal alignments.
 
 # INSTALLATION
 
+<<<<<<< HEAD
 Just clone th [GitHub repository](https://github.com/jlbuzzo/rtcMakefile) from the command line:
 
+=======
+Just clone th GitHub repository from the command line:
+>>>>>>> f65b4bb1c525989900c71b943f72a2227326ba78
 	$ git clone https://github.com/jlbuzzo/rtcMakefile.git
 
 
@@ -26,10 +30,16 @@ Just clone th [GitHub repository](https://github.com/jlbuzzo/rtcMakefile) from t
 
 In order to properly run this pipeline, the user will need these programs
 installed:
+<<<<<<< HEAD
 
 * GNU make
 * gawk
 * Perl (5.26.2 or above)
+=======
+	* GNU make
+	* gawk
+	* Perl (5.26.2 or above)
+>>>>>>> f65b4bb1c525989900c71b943f72a2227326ba78
 
 # USAGE
 
