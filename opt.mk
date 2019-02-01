@@ -4,7 +4,7 @@ BASE_DIR := /home/scratch60/lbuzzo_nov/RTC/data
 ANNOTATION_DIR := $(BASE_DIR)/annotation
 GENOMES_DIR := $(BASE_DIR)/reference
 
-REF_ANNOTATION := $(ANNOTATION_DIR)/gencode.v26.annotation.gtf
+REF_ANNOTATION := $(ANNOTATION_DIR)/gencode.v29.annotation.gtf
 REP_ANNOTATION := $(ANNOTATION_DIR)/rep.hg38.converted.bed
 REP_ANNOTATION_manual := $(ANNOTATION_DIR)/rep.hg38.converted.manual.bed
 REFERENCE_GENOME_FASTA := $(GENOMES_DIR)/hg38.fa
