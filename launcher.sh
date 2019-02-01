@@ -9,7 +9,7 @@
 ############################## PREAMBLE #######################################
 
 # Main variables.
-CMD=make
+CMD="make -f newMakefile"
 SUB_CMD1=processSample
 SUB_CMD2=mergeCall
 OTHERS="SORTED=TRUE"
