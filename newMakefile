@@ -11,6 +11,10 @@
 
 ############################## PREAMBLE ########################################
 
+# Set some environment variables.
+SHELL				:= bash
+
+
 # Include the options file.
 include opt.mk
 

@@ -15,6 +15,13 @@ SUB_CMD2=mergeCall
 OTHERS="SORTED=TRUE"
 
 
+# Number of parallel jobs.
+JOBS=4
+
+# Reset counter
+count=0
+
+
 # Arguments validation.
 if (( $# < 2 )); then
 	cat >&2 <<- EOF
@@ -48,12 +55,6 @@ while [[ "$count" -lt $# ]]; do
 	((++count))
 done
 
-
-# Number of parallel jobs.
-JOBS=4
-
-# Reset counter
-count=0
 
 
 
