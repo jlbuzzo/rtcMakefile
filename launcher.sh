@@ -16,7 +16,7 @@ OTHERS="SORTED=TRUE"
 
 
 # Number of parallel jobs.
-JOBS=32
+JOBS=10
 
 # Reset counter
 count=0
